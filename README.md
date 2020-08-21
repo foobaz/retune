@@ -21,7 +21,8 @@ These parameters are adjustable with the `-e` and `-c` arguments.
 ### How it works
 Retune does not depend on any 3rd party Python packages, only the standard
 library.  It does depend on the `ffmpeg` command line tool to get bitrates
-and to do the encoding.
+and to do the encoding.  Retune was developed with Python 3.6 and also tested
+with Python 3.8.
 
 By default Retune uses all CPU cores to encode files in parallel, and it can
 take hours to encode large libraries - roughly 1 hour per 100 GB of music.  If
