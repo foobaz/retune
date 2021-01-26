@@ -9,7 +9,6 @@ import random
 import shutil
 import string
 import subprocess
-import tempfile
 
 parser = argparse.ArgumentParser()
 parser.add_argument('src', type=str, nargs='+', help='paths to input directories with music')
