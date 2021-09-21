@@ -41,7 +41,7 @@ class strip_encoder():
         self.dst = dst
 
     def encode(self):
-        subprocess_args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-i', self.src, '-vn', '-c:a', 'copy', '-sn', '-dn', self.tmp]
+        subprocess_args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-threads', '1', '-i', self.src, '-vn', '-c:a', 'copy', '-sn', '-dn', self.tmp]
         out = subprocess.call(subprocess_args)
         if not out == 0:
             print('skipping track that failed conversion: {}'.format(self.src))
@@ -58,7 +58,7 @@ class opus_encoder():
         self.bitrate = bitrate
 
     def encode(self):
-        subprocess_args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-i', self.src, '-vn', '-c:a', 'libopus', '-vbr', 'on', '-frame_duration', '60', '-b:a', str(self.bitrate), '-sn', '-dn', self.tmp]
+        subprocess_args = ['ffmpeg', '-hide_banner', '-loglevel', 'error', '-threads', '1', '-i', self.src, '-vn', '-c:a', 'libopus', '-vbr', 'on', '-frame_duration', '60', '-b:a', str(self.bitrate), '-sn', '-dn', self.tmp]
         out = subprocess.call(subprocess_args)
         if not out == 0:
             print('skipping track that failed conversion: {}'.format(self.src))
@@ -91,7 +91,7 @@ def process_album(src_root, album_root, album_dir, q):
         #print('\t{}'.format(track_path))
         #track_joined = os.path.join(track_root, track_file)
         #print('examining file {}'.format(track_path))
-        out = subprocess.check_output(['ffprobe', '-hide_banner', '-loglevel', 'error', '-show_streams', '-show_format', '-print_format', 'json', entry.path])
+        out = subprocess.check_output(['ffprobe', '-hide_banner', '-loglevel', 'error', '-threads', '1', '-show_streams', '-show_format', '-print_format', 'json', entry.path])
         #print("out == {0}".format(out))
         j = json.loads(out.decode('utf-8'))
         #print('j == {}'.format(j))
