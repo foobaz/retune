@@ -7,11 +7,11 @@ Encode a large music library to small portable form
 ### Options
 
 `-e`
-Encoding bitrate in kbps
+Encoding bitrate in kbps.  Defaults to 96 kbps.
 
 `-c`
 Cutoff bitrate in kbps.  Albums with an overall bitrate below this value will
-copied to the output directory as-is, without re-encoding.
+copied to the output directory without re-encoding.  Defaults to 192 kbps.
 
 `-f`
 Output format.  May be mp3, vorbis, aac, or opus.  Defaults to aac.
@@ -24,7 +24,7 @@ Block utilization optimizer.  Dynamically adjusts the encoding bitrate to
 produce output files with file sizes equal to or slightly less than a round
 number of filesystem blocks, to minimize wasted space.  Most effective for
 filesystems with block or cluster sizes of 32 kiB or above, such as exFAT.
-Triples the encoding time.
+Triples the encoding time.  Disabled by default.
 
 ### Description
 Let's say you have a large collection of music in an archival, high bitrate
